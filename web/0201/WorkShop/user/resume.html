@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #ssafy > p:nth-child(2) {
+      color: red;
+    }
+    #ssafy > p:nth-of-type(2) {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <!-- 이미지 태그의 속성 alt에 대체문구 삽입 -->
+  <!-- 내용을 확인하기 위해서 alt + b -->
+  <!-- 절대 경로 -> 실제 이미지 파일이 있는 폴더의 주소를 그대로 입력한다. -->
+  <!-- src="C:\Users\USER\Desktop\hws\python\0201\WorkShop\image\ssafy.png" -->
+  <a href="https://www.ssafy.com">
+    <!--
+    a 태그의 내부에 들어올 수 있는 요소는
+    모든 것들이 가능하다. 단순 텍스트 뿐만 아니라, 이미지 등도 가능하다.
+    -->
+    <img src="..\image\ssafy.png" alt="SSAFY">  
+  </a>
+
+  <div id="ssafy">
+    <h2>어떻게 선택 될까?</h2>
+    <p>첫번째 단락</p>
+    <p>두번째 단락</p>
+    <p>세번째 단락</p>
+    <p>네번째 단락</p>
+  </div>
+</body>
+</html>
