@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      box-sizing: border-box;
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+      text-align: center;
+    }
+
+    /* 
+    position이 static이 아니라면
+    top, bottom, left, right 속성을 이용해서 위치를 옮길 수 있다.
+    주의해야 할 점은, top 100px은 위로 100px이 아니라 위로부터 100px이라는 점
+     */
+    .relative {
+      position: relative;
+      top: 100px;
+      left: 100px;
+      background-color: crimson;
+    }
+
+    .absolute {
+      position: absolute;
+      /* top, left 등의 속성을 부여하기 전까지는 부모에 상속되어 있다.
+      단, 자신의 공간을 차지 않는 속성은 적용된다. */
+      top: 100px;
+      left: 100px;
+      background-color: crimson;
+    }
+
+    .brother {
+      width: 200px;
+      height: 100px;
+      background-color: skyblue;
+    }
+
+    .parent {
+      margin: auto;
+      /* position: relative; */
+      width: 300px;
+      height: 300px;
+    }
+
+    /* 내 브라우저를 기준으로 bottom, right 등의 속성이 적용된다. */
+    /* 화면이 어디를 가리키고 있든 관계없이 항상 그 위치에 존재한다. */
+    .fixed {
+      position: fixed;
+      background-color: orangered;
+      bottom: 50px;
+      right: 50px;
+    }
+    /* 
+    position
+      - static : default값 (top, bottom, left, right를 줄 수 없음)
+      - relative : 
+      - absolute : 자기공간을 가지지 않음
+      - fixed : 브라우저 기준으로 고정됨 (스크롤이동을 해도 위치가 그대로임)
+     */
+  </style>
+</head>
+<body>
+  <!-- parent가 relative라면 absolute는 parent div를 기준으로 이동한다. -->
+  <div class="parent">
+    <!-- 
+    absolute는 position이 static이 아닌 부모를 찾아간다.
+    내 상단의 요소 중에 static이 아닌 요소가 없으면 
+    최상단 body를 기준으로 이동하게 된다.
+     -->
+    <div class="absolute">absolute</div>
+    <div class="brother">brother</div>
+  </div>
+  <div class="parent">
+    <div class="relative">relative</div>
+    <div class="brother">brother</div>
+  </div>
+
+  <div class="fixed">fixed</div>
+
+  <!-- #page>.logo+ul#navigation>li*5>a{Item $} -->
+  <div id="page">
+    <div class="logo"></div>
+    <ul id="navigation">
+      <li><a href="">Item 1</a></li>
+      <li><a href="">Item 2</a></li>
+      <li><a href="">Item 3</a></li>
+      <li><a href="">Item 4</a></li>
+      <li><a href="">Item 5</a></li>
+    </ul>
+  </div>
+</body>
+</html>

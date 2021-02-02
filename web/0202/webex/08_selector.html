@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 항상 CSS 내부 참조를 위해서 head 태그 안에 -->
+  <!-- style 태그 작성 -->
+  <style>
+    /* a b : 자손 결합자 */
+    .grandparent .child {
+      color: red;
+    }
+
+    /* a > b : 자식 결합자 */
+    .grandparents > .childs {
+      color: blue;
+    }
+
+    .first + .second {
+      color: skyblue;
+    }
+  </style>
+</head>
+<body>
+  <!-- a b : 자손 결합자 -->
+  <div class="grandparent">
+    <p class="child">나는 자식</p>
+    <div class="parent">
+      <p class="child">나는 손자</p>
+    </div>
+    <p class="child">나는 자식</p>
+  </div>
+
+  <!-- a > b : 자식 결합자 -->
+  <div class="grandparents">
+    <p class="childs">나는 자식</p>
+    <div class="parents">
+      <p class="childs">나는 손자</p>
+    </div>
+    <p class="childs">나는 자식</p>
+  </div>
+
+  <!-- a + b : 인접 형제 결합자 -->
+  <div class="first">형</div>
+  <div class="second">동생</div>
+  <div class="cousin">사촌동생</div>
+  <div class="second">동생</div>
+
+</body>
+</html>
