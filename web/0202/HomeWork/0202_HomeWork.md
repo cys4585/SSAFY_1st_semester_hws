@@ -8,13 +8,15 @@
 div, header, h1, section, footer, a, form, span
 ```
 
-- header, section, footer
+​		**header, section, footer**
 
 
 
 ### 2. input Tag
 
-- 아래 이미지와 같이 로그인 Form을 생성하는 HTML코드를 작성하시오. 단, USERNAME 글자를 클릭하면 아이디를 입력하는 input에, PWD 글자를 클릭하면 비밀번호를 입력하는 input에 focusing 되도록 하시오
+- 아래 이미지와 같이 로그인 Form을 생성하는 HTML코드를 작성하시오. 단, USERNAME 글자를 클릭하면 아이디를 입력하는 input에, PWD 글자를 클릭하면 비밀번호를 입력하는 input에 focusing 되도록 하시오.
+
+![image-20210202131919637](0202_HomeWork.assets/image-20210202131919637.png)
 
 ```html
 <!DOCTYPE html>
@@ -37,6 +39,8 @@ div, header, h1, section, footer, a, form, span
 </body>
 </html>
 ```
+
+![image-20210202131704545](0202_HomeWork.assets/image-20210202131704545.png)
 
 
 
@@ -64,8 +68,10 @@ div, header, h1, section, footer, a, form, span
     }
 ```
 
-		- 자손 선택자 : 자손들 모두 선택
-		- 자식 선택자 : 바로 밑의 자식만 선택
+ 	1. 자손 선택자 - `div p`
+     - div의 모든 자손 요소들 중에 p태그 (깊이 관계 없음)
+ 	2. 자식 선택자 - `div > p`
+     - div의 직속 자식 요소들 중에 p태그
 
 
 

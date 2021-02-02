@@ -17,7 +17,9 @@
   </style>
 </head>
 <body>
+  <!-- 입력 란을 작성할 때는 항상 form 태그와 함께 -->
   <form action="#">
+    <!-- label의 for 속성은 input의 id 값과 연결됨 -->
     <label for="username">USERNAME : </label>
     <input type="text" id="username" placeholder="아이디를 입력 해 주세요."
       name="username">
@@ -25,6 +27,7 @@
     <label for="pwd">PWD : </label>
     <input type="password" id="pwd" name="pwd">
     <input type="submit" value="로그인">
+    <input type="reset" value="reset">
   </form>
 </body>
 </html>
