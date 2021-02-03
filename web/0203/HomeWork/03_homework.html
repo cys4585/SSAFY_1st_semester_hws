@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <style>
+    .card-nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .blue-line {
+      border: 2px solid rgb(101, 104, 190);
+    }
+  </style>
+</head>
+<body>
+  <h1>03. Grid System & Responsive Web</h1>
+  <hr>
+
+  <h2>1. Components</h2>
+  <div class="container">
+    <div class="btn btn-success w-50">Sign in</div>
+  </div>
+  <hr>
+
+  <h2>2. Components</h2>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="ssafy_logo.png" alt="" class="w-50">
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              프로젝트
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              그룹들
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#">활동</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#">마일스톤</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#">스니펫</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <hr>
+
+  <h2>3. Components</h2>
+  <nav aria-label="...">
+    <ul class="pagination">
+      <li class="page-item disabled">
+        <span class="page-link">Prev</span>
+      </li>
+      <li class="page-item active"><a class="page-link" href="#">1</a></li>
+      <li class="page-item "><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">4</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav>
+  <hr>
+
+  <h2>4. Login Page</h2>
+  <div class="container">
+    <div class="card">
+      <div class="card-nav bg-danger text-light">
+        <p>Invalid Login or password.</p>
+      </div>
+      <div class="card-header">
+        <h2>SSAFY 전용 GitLab 시스템</h2>
+      </div>
+      <hr>
+      <div class="card-body">
+        <div class="card-body-title text-center">Sign in</div>
+        <hr class="blue-line">
+        <div class="card-body-contents">
+          <form action="#">
+            <label for="email">Username or email</label><br>
+            <input type="text" id="email" name="email"><br>
+            <label for="password">Password</label><br>
+            <input type="password" id="password" name="password"><br>
+            <div class="d-flex justify-content-between">
+              <div class="d-flex align-items-center">
+                <input type="checkbox" id="checkbox">
+                <label for="checkbox">Remamber me</label>
+              </div>
+              <a href="#">Forgot your password?</a>
+            </div>
+            <div class="btn btn-success w-100">Sign in</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html>
