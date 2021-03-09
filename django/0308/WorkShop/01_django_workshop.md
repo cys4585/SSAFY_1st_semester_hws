@@ -4,9 +4,15 @@
 
 ### 1. Django Project
 
+
+
+![image-20210309144916726](01_django_workshop.assets/image-20210309144916726.png)
+
+
+
 1. intro/urls.py
 
-   ```django
+   ```python
    from django.contrib import admin
    from django.urls import path
    from pages import views
@@ -19,7 +25,7 @@
 
 2. pages/views.py
 
-   ```django
+   ```python
    from django.shortcuts import render
    import random
    

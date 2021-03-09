@@ -59,7 +59,7 @@ https://docs.djangoproject.com/en/3.1/ref/templates/builtins/
 
 ```django
 {% for post in posts %}
-	<p>{%{% {{forloop.counter0}}번 글 : {{ post }} %}</p>
+	<p>{{forloop.counter0}}번 글 : {{ post }}</p>
 {% endfor %}
 ```
 
@@ -68,7 +68,8 @@ https://docs.djangoproject.com/en/3.1/ref/templates/builtins/
 ```django
 {% for user in users %}
 	<p>{{user}}</p>
-{% empty %} <p>현재 가입한 유저가 없습니다.</p>
+{% empty %}
+	<p>현재 가입한 유저가 없습니다.</p>
 {% endfor %}
 ```
 
@@ -118,7 +119,7 @@ https://docs.djangoproject.com/en/3.1/ref/templates/builtins/
 
 1) 지문의 코드 중 form 태그의 속성인 action의 역할에 대해 설명하시오. 
 
-- submit을 했을 때 요청할 url
+- form이 제출될 때 데이터를 보낼 경로를 지정한다.
 
 2) 지문의 코드 중 method가 가질 수 있는 속성 값을 작성하시오. 
 
@@ -126,5 +127,5 @@ https://docs.djangoproject.com/en/3.1/ref/templates/builtins/
 
 3) input 태그에 각각 `안녕하세요`, `반갑습니다`, `파이팅` 문자열을 넣고 submit 버튼을 눌렀을 때 이동하는 url 경로를 작성하시오.
 
-- /localhost:8000/create/?title=안녕하세요&content=반갑습니다&my-site=파이팅
+- localhost:8000/create/?title=안녕하세요&content=반갑습니다&my-site=파이팅
 
