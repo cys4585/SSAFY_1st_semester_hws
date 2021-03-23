@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
+{% load bootstrap5 %}
 
 {% block content %}
   <h1>LOGIN PAGE</h1>
   <hr>
   <form action="" method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="로그인">
+    {% bootstrap_form form %}
+    {% comment %} {{ form.as_p }} {% endcomment %}
+    {% bootstrap_button "로그인" button_type="submit"%}
+    {% comment %} <input type="submit" value="로그인"> {% endcomment %}
   </form>
+  <a href="{% url 'articles:index' %}">BACK</a>
 {% endblock content %}

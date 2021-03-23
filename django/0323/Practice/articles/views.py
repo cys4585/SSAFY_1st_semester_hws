@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Article
 from django.views.decorators.http import require_safe, require_POST, require_http_methods
 from .forms import ArticleForm
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -14,6 +15,7 @@ def index(request):
     return render(request, 'articles/index.html', context)
 
 
+@login_required
 @require_http_methods(['POST', 'GET'])
 def create(request):
     if request.method == 'POST':

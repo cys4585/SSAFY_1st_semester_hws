@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
+{% load bootstrap5 %}
 
 {% block content %}
   <h1>SIGNUP PAGE</h1>
   <hr>
   <form action="" method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="완료">
+    {% comment %} {{ form.as_p }} {% endcomment %}
+    {% comment %} <input type="submit" value="완료"> {% endcomment %}
+    {% bootstrap_form form %}
+    {% bootstrap_button "완료" button_type="submit" %}
   </form>
 {% endblock content %}

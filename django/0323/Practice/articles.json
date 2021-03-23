@@ -1,0 +1,32 @@
+[
+{
+    "model": "articles.article",
+    "pk": 1,
+    "fields": {
+        "title": "테스트(admin)",
+        "content": "ㅎㅎㅎ",
+        "created_at": "2021-03-23T05:19:57.992Z",
+        "updated_at": "2021-03-23T05:19:57.992Z"
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 5,
+    "fields": {
+        "title": "test (수정)111",
+        "content": "detail로 redirect1111",
+        "created_at": "2021-03-23T05:37:38.043Z",
+        "updated_at": "2021-03-23T06:07:55.794Z"
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 7,
+    "fields": {
+        "title": "im cys4 (update)",
+        "content": "111yeah",
+        "created_at": "2021-03-23T07:42:41.129Z",
+        "updated_at": "2021-03-23T07:42:49.376Z"
+    }
+}
+]
