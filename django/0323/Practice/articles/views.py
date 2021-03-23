@@ -42,10 +42,21 @@ def detail(request, article_pk):
 def update(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
     if request.method == 'POST':
-        pass
+        # modelform = ModelForm(데이터, 모델)
+        form = ArticleForm(request.POST, instance=article)
+        if form.is_valid():
+            form.save()
+            return redirect('articles:detail', article_pk)
     else:
-        form = ArticleForm()
+        form = ArticleForm(instance=article)
     context = {
         'form':form,
     }
     return render(request, 'articles/form.html', context)
+
+
+@require_POST
+def delete(request, article_pk):
+    article = get_object_or_404(Article, pk=article_pk)
+    article.delete()
+    return redirect('articles:index')

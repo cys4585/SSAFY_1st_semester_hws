@@ -14,7 +14,7 @@
     {% csrf_token %}
     <input type="submit" value="수정">
   </form>
-  <form action="" method="POST">
+  <form action="{% url 'articles:delete' article.pk %}" method="POST">
     {% csrf_token %}
     <input type="submit" value="삭제">
   </form>

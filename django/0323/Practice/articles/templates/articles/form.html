@@ -10,6 +10,10 @@
   <form action="" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="작성">
+    {% if request.resolver_match.url_name == 'create' %}
+      <input type="submit" value="작성">
+    {% else %}
+      <input type="submit" value="수정">
+    {% endif %}
   </form>
 {% endblock content %}
