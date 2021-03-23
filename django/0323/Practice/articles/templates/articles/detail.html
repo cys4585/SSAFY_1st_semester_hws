@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>DETAIL PAGE</h1>
+  <hr>
+  <div class="container" style="border: solid; margin-top:10px">
+        <p>번호 : {{ article.pk }}</p>
+        <p>제목 : {{ article.title }}</p>
+        <p>내용 : {{ article.content }}</p>
+        <p>작성일 : {{ article.created_at }}</p>
+        <p>수정일 : {{ article.updated_at }}</p>
+  </div>
+  <form action="{% url 'articles:update' article.pk %}" method="GET">
+    {% csrf_token %}
+    <input type="submit" value="수정">
+  </form>
+  <form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="삭제">
+  </form>
+  
+{% endblock content %}
