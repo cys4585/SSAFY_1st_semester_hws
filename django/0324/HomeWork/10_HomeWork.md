@@ -57,7 +57,7 @@
   ```
 
   - commit=False
-    - save(객체생성)는 하지만, commit(DB의 table)에 저장하지는 않는다.
+    - save(객체생성)는 하지만, commit(DB의 table에 저장)하지는 않는다.
 
 
 
@@ -74,5 +74,5 @@
   {% endfor %}
   ```
 
-  - comments
+  - article.comment_set.all
 
