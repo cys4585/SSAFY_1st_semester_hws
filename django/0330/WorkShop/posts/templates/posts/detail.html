@@ -4,8 +4,8 @@
   <h1>DETAIL PAGE</h1>
   <hr>
   <h1>{{ post.title }}</h1>
-  <p>{{ post.issue_a}} | {{ post.issue_b }}</p>
-  <p>{{ pick.content }}</p>
+  <p>{{ post.issue_a }} | {{ post.issue_b }}</p>
+  <p>{{ blue_rate }}% | {{ red_rate }}%</p>
   <hr>
   <h1>댓글 작성</h1>
   <form action="{% url 'posts:create_comment' post.pk %}" method="POST">

@@ -3,15 +3,15 @@ from .models import Pick, Comment, Post
 
 # Register your models here.
 class PickAdmin(admin.ModelAdmin):
-    list_display = ('post', 'content',)
+    list_display = ('pk', 'post', 'content', 'count')
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'issue_a', 'issue_b',)
+    list_display = ('pk', 'title', 'issue_a', 'issue_b',)
 
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('post', 'pick', 'content')
+    list_display = ('pk', 'post', 'pick', 'content')
 
 admin.site.register(Pick, PickAdmin)
 admin.site.register(Post, PostAdmin)

@@ -21,3 +21,7 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         exclude = ('post',)
+
+    def __init__(self, post, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['pick'].queryset = Pick.objects.filter(post=post)
