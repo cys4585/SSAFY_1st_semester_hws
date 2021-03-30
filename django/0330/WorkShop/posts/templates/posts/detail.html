@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+  <h1>DETAIL PAGE</h1>
+  <hr>
+  <h1>{{ post.title }}</h1>
+  <p>{{ post.issue_a}} | {{ post.issue_b }}</p>
+  <p>{{ pick.content }}</p>
+  <hr>
+  <h1>댓글 작성</h1>
+  <form action="{% url 'posts:create_comment' post.pk %}" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form comment_form %}
+    <input type="submit" class="btn btn-warning" value="작성">
+  </form>
+  <hr>
+  <h1>댓글 목록</h1>
+  {% for comment in comments %}
+    {% if comment.pick.content == 'BLUE' %}
+      <p class="btn-primary">{{ comment.content }}</p>
+    {% else %}
+      <p class="btn-danger">{{ comment.content }}</p>
+    {% endif %}
+    
+  {% empty %}
+    <p>댓글이 없습니다.</p>
+  {% endfor %}
+{% endblock content %}
