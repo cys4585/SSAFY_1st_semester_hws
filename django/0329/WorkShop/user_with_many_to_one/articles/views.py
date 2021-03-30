@@ -48,29 +48,35 @@ def detail(request, pk):
 
 @require_POST
 def delete(request, pk):
+    article = get_object_or_404(Article, pk=pk)
     if request.user.is_authenticated:
-        article = get_object_or_404(Article, pk=pk)
-        article.delete()
-    return redirect('articles:index')
+        if article.user == request.user:
+            article.delete()
+            return redirect('articles:index')
+        # return redirect('articles:detail', article.pk)
+        return HttpResponse('', status_code=401)
+    return redirect('accounts:login')
 
 
 @login_required
 @require_http_methods(['GET', 'POST'])
 def update(request, pk):
     article = get_object_or_404(Article, pk=pk)
-    if request.method == 'POST':
-        form = ArticleForm(request.POST, instance=article)
-        if form.is_valid():
-            form.save()
-            return redirect('articles:detail', article.pk)
-    else:
-        form = ArticleForm(instance=article)
-    context = {
-        'form': form,
-        'article': article,
-    }
-    return render(request, 'articles/update.html', context)
-        
+    if article.user == request.user:
+        if request.method == 'POST':
+            form = ArticleForm(request.POST, instance=article)
+            if form.is_valid():
+                form.save()
+                return redirect('articles:detail', article.pk)
+        else:
+            form = ArticleForm(instance=article)
+        context = {
+            'form': form,
+            'article': article,
+        }
+        return render(request, 'articles/update.html', context)
+    return HttpResponse('', status=401)
+
 
 @require_POST
 def comments_create(request, pk):
@@ -80,6 +86,7 @@ def comments_create(request, pk):
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.article = article
+            comment.user = request.user
             comment.save()
             return redirect('articles:detail', article.pk)
         context = {
@@ -93,7 +100,8 @@ def comments_create(request, pk):
 
 @require_POST
 def comments_delete(request, article_pk, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
     if request.user.is_authenticated:
-        comment = get_object_or_404(Comment, pk=comment_pk)
-        comment.delete()
+        if request.user == comment.user:
+            comment.delete()
     return redirect('articles:detail', article_pk)
