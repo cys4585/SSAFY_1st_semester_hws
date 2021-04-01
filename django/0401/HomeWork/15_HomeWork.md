@@ -4,9 +4,21 @@
 
 - Django는 MTV로 이루어진 Web Framework다. MTV가 무엇의 약자이며 Django에서 각각 어떤 역할을 하고 있는지 작성하시오
 
-  - M : Model - 데이터 처리
-  - T : Template - 요청에 대한 화면을 보여줌
-  - V : View - 요청에 대한 적절한 기능을 수행
+  | 이름     | 역할              |
+  | -------- | ----------------- |
+  | Model    | 데이터베이스 관리 |
+  | Tamplate | 인터페이스, 화면  |
+  | View     | 중심 컨트롤러     |
+  
+  - Model 
+    - 응용 프로그램의 데이터 구조를 정의하고 데이터베이스의 기록을 관리(추가, 수정, 삭제)
+  - Template
+    - 파일의 구조나 레이아웃을 정의
+    - 실제 내용을 보여주는데 사용(presentation)
+  - View - 요청에 대한 적절한 기능을 수행
+    - HTTP 요청을 수신하고 HTTP 응답을 반환
+    - Model을 통해 요청을 충족시키는데 필요한 데이터 접근
+    - 그리고 템플릿에게 응답의 서식 설정을 맡김
 
 
 
@@ -27,7 +39,7 @@
   urlpatterns = [
       path('admin/', admin.site,urls),
       path('articles/', include('articles.urls')),
-      path('', views.index),
+      path('', views.index, name='index'),
   ]
   ```
 
@@ -58,19 +70,27 @@
 
   1) 마이그레이션 생성 
 
-  - python manage.py makemigrations
+  - ```bash
+    $ python manage.py makemigrations
+    ```
 
   2) 마이그레이션 DB 반영 여부 확인 
 
-  - python manage.py showmigrations articles
-  
+  - ```bash
+    $ python manage.py showmigrations articles
+    ```
+
   3) 마이그레이션에 대응되는 SQL문 출력 
-  
-  - python manage.py sqlmigrate articles <migration number>
-  
+
+  - ```bash
+    $ python manage.py sqlmigrate articles <migration number>
+    ```
+
   4) 마이그레이션 파일의 내용을 DB에 최종 반영
-  
-  - python manage.py migrate
+
+  - ```bash
+    $ python manage.py migrate
+    ```
 
 
 
@@ -82,21 +102,23 @@
 
   - **False**
   - ~~POST는 body, GET은 header에 데이터를 담는다..?~~
-
-  2) ModelForm과 Form Class의 핵심 차이는 Model의 정보를 알고 있는지의 여부이다. 
-
-  - **Ture**
-
-  3) AuthenticationForm은 User 모델과 관련된 정보를 이미 알고 있는 ModelForm으로 구성되어 있다. 
-
+- 클라이언트가 서버로 요청을 보낼때 method의 값에 따라 요청 방식이 달라지므로 실제 동작 방식이 다르다고 할 수 있다.
+  
+2) ModelForm과 Form Class의 핵심 차이는 Model의 정보를 알고 있는지의 여부이다. 
+  
+- **Ture**
+  
+3) AuthenticationForm은 User 모델과 관련된 정보를 이미 알고 있는 ModelForm으로 구성되어 있다. 
+  
   - **False**
-  - Form Class 상속
-
-  4) ModelForm을 사용할 때 Meta 클래스에 fields 관련 옵션은 반드시 작성해야 한다.
-
+- Form Class 상속
+  
+4) ModelForm을 사용할 때 Meta 클래스에 fields 관련 옵션은 반드시 작성해야 한다.
+  
   - **True**
-    - ModelForm을 직접 상속받아서 쓰는 경우 반드시 fileds 또는 exclude를 작성해야함
-
+  
+  - ModelForm을 직접 상속받아서 쓰는 경우 반드시 fileds 또는 exclude를 작성해야함
+  
   - **False**
 
     - ModelForm을 상속받아서 작성된 클래스를 상속한 경우
@@ -104,7 +126,7 @@
     - 상속한 클래스의 Meta클래스의 fields를 그대로 사용할 수 있다..?
 
     - ex
-
+  
     - ```python
       class CustomUserCreationForm(UserCreationForm):
       
@@ -119,8 +141,13 @@
 ### 6. media 파일 경로 
 
 - 사용자가 업로드한 파일이 저장되는 위치를 Django 프로젝트 폴더(crud) 내부의 /uploaded_files 폴더로 지정하고자 한다. 이 때, settings.py에 작성해야 하는 설정 2가지를 작성하시오.
-  - MEDIA_URL = '/media/'
-  - MEDIA_ROOT = BASE_DIR / 'crud/uploaded_files'
+  - ```python
+    # 사용자가 업로드 한 파일을 보관할 디렉토리의 절대 파일 시스템 경로
+    MEDIA_ROOT = BASE_DIR / 'crud' / 'uploaded_files'
+    
+    # MEDIA_ROOT에서 제공되는 미디어 파일을 처리하는 URL
+    MEDIA_URL = '/media/'
+    ```
 
 
 
@@ -142,7 +169,8 @@
   
   4) SQLite에서 .tables, .headers on과 같은 dot( . )로 시작하는 명령어는 SQL문이 아니다. 
   
-  - ~~**True**~~
+  - **True**
+  - dot으로 시작하는 명령어는 SQLite에서 쓰이는 명령어이다.
   
   5) 하나의 데이터베이스 안에는 반드시 한 개의 테이블만 존재해야 한다.
   
