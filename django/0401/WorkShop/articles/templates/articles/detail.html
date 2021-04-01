@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% load humanize %}
+{% load make_link %}
 
 {% block content %}
   <h2>DETAIL</h2>
   <h3>{{ article.pk }} 번째 글</h3>
   <hr>
   <p>제목 : {{ article.title }}</p>
-  <p>내용 : {{ article.content }}</p>
+  <p>내용 : {{ article|make_link|safe }}</p>
   <p>작성시각 : {{ article.created_at|naturalday }}</p>
   <p>수정시각 : {{ article.updated_at|naturaltime }}</p>
   <hr>

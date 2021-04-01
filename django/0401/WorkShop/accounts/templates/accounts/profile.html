@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>{{user}}'s Profile</h1>
+  <h1>{{ user.username }}'s Profile</h1>
   {% if request.user.is_authenticated and request.user != user %}
     <form action="{% url 'accounts:follow' user.username %}" method="POST">
       {% csrf_token %}
@@ -18,12 +18,14 @@
   <p>last_name : {{user.last_name}}</p>
   <p>email : {{user.email}}</p>
   <hr>
-  <h1>{{ user }}'s Posts</h1>
+  <h1>{{ user.username }}'s Posts</h1>
   {% for article in user.article_set.all %}
     <div style="border:solid; margin-top:10px; padding:5px;">
       <h5>title | {{ article.title }}</h5>
       <p>content | {{ article.content }}</p>
       <p><i class="fas fa-heart" style="color:crimson;"></i> | {{ article.like_users.all|length }}</p>
+      <p>comment | {{ article.comment_set.all|length }}개</p>
+      <a href="{% url 'articles:detail' article.pk %}">[DETAIL]</a>
     </div>
   {% empty %}
     <p>게시글이 없습니다.</p>
