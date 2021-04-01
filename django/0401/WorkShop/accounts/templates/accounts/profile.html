@@ -17,7 +17,17 @@
   <p>fist_name : {{user.first_name}}</p>
   <p>last_name : {{user.last_name}}</p>
   <p>email : {{user.email}}</p>
-
-  <br>
+  <hr>
+  <h1>{{ user }}'s Posts</h1>
+  {% for article in user.article_set.all %}
+    <div style="border:solid; margin-top:10px; padding:5px;">
+      <h5>title | {{ article.title }}</h5>
+      <p>content | {{ article.content }}</p>
+      <p><i class="fas fa-heart" style="color:crimson;"></i> | {{ article.like_users.all|length }}</p>
+    </div>
+  {% empty %}
+    <p>게시글이 없습니다.</p>
+  {% endfor %}
+  <hr>
   <a href="{% url 'articles:index' %}">[BACK]</a>
 {% endblock content %}
