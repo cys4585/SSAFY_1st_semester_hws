@@ -153,7 +153,7 @@
   app_name = 'accounts'
   urlpatterns = [
       ...
-      path('<int:user_name>/follow/', views.follow, name="follow")
+      path('<str:username>/follow/', views.follow, name="follow")
   ]
   ```
 
