@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{user}}'s Profile</h1>
+  {% if request.user.is_authenticated and request.user != user %}
+    <form action="{% url 'accounts:follow' user.username %}" method="POST">
+      {% csrf_token %}
+      {% if request.user in user.followers.all %}
+        <button class="btn btn-primary">팔로우 취소</button>
+      {% else %}
+        <button class="btn btn-primary">팔로우</button>
+      {% endif %}
+    </form>
+  {% endif %}
+  <p>팔로워 {{ user.followers.all|length }} | 팔로우 {{ user.followings.all|length }}</p>
+  <br>
+  <p>fist_name : {{user.first_name}}</p>
+  <p>last_name : {{user.last_name}}</p>
+  <p>email : {{user.email}}</p>
+
+  <br>
+  <a href="{% url 'articles:index' %}">[BACK]</a>
+{% endblock content %}
