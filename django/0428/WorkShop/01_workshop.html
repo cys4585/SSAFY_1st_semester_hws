@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form action="">
+    <input type="text">
+    <button>Add</button>
+    <ul>
+
+    </ul>
+  </form>
+  <script>
+    function addTodo (event) {
+      // action 취소하기
+      event.preventDefault()
+
+      // 데이터 얻기
+      const myInput = document.querySelector('input')
+      tmpValue = myInput.value
+
+      // 데이터가 빈 값이면 입력 X
+      if(tmpValue != '') {
+        // li 태그 생성, 데이터 삽입
+        const myLi = document.createElement('li')
+        myLi.innerText = tmpValue
+
+        // li태그를 ul태그의 자식으로 넣기
+        const myUl = document.querySelector('ul')
+        myUl.appendChild(myLi)
+
+        // input value 초기화
+        // myInput.value = ''
+        event.target.reset()
+      }
+    }
+
+    const myFormTag = document.querySelector('form')
+    myFormTag.addEventListener('submit', addTodo)
+  </script>
+</body>
+</html>
