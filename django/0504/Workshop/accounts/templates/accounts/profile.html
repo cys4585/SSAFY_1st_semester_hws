@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ person.username }}님의 프로필</h1>
+
+  {% with followings=person.followings.all followers=person.followers.all %}
+    <div>
+      <div>
+        팔로잉 : <span id='followings-count'>{{ followings|length }}</span> / 팔로워 : <span id='followers-count'>{{ followers|length }}</span>
+      </div>
+      {% if request.user != person %}
+        <div>
+          <form id='follow-form' data-person-id='{{ person.pk }}'>
+            {% csrf_token %}
+            {% if request.user in followers %}
+              <button id='follow-button' class='btn-warning'>언팔로우</button>
+            {% else %}
+              <button id='follow-button' class='btn-primary'>팔로우</button>
+            {% endif %}
+          </form>
+        </div>
+      {% endif %}
+    </div>
+  {% endwith %}
+
+
+  <hr>
+
+  <h2>{{ person.username }}'s 게시글</h2>
+  {% for article in person.article_set.all %}
+    <div>{{ article.title }}</div>
+  {% endfor %}
+
+  <hr>
+
+  <h2>{{ person.username }}'s 댓글</h2>
+  {% for comment in person.comment_set.all %}
+    <div>{{ comment.content }}</div>
+  {% endfor %}
+
+  <hr>
+
+  <h2>{{ person.username }}'s likes</h2>
+  {% for article in person.like_articles.all %}
+    <div>{{ article.title }}</div>
+  {% endfor %}
+
+  <hr>
+
+  <a href="{% url 'articles:index' %}">[back]</a>
+
+  <!-- axios CDN -->
+  <!-- 참고 : https://github.com/axios/axios#axios-api -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const followForm = document.querySelector('#follow-form')
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+    
+    // form에 Event Listener 달기
+    followForm.addEventListener('submit', event => {
+      // form의 default 이벤트 행동 막기
+      event.preventDefault()
+
+      // 참고 : https://developer.mozilla.org/ko/docs/Web/API/HTMLOrForeignElement/dataset
+      const { personId } = event.target.dataset   // data-person-id='{{ person.pk }}' (HTMLElement.dataset)
+
+      // followForm에 submit event가 발생할 때 -> axios를 통해 비동기 요청보내기
+      axios({
+        method: 'post',
+        url: `http://127.0.0.1:8000/accounts/${personId}/follow/`,
+        // 참고 : https://docs.djangoproject.com/en/3.2/ref/csrf/#setting-the-token-on-the-ajax-request
+        headers: {'X-CSRFToken': csrftoken} 
+      })
+        .then(response => {
+          // console.log(response)
+          const { is_following, followers, followings } = response.data
+
+          // button 텍스트, 색상 바꾸기
+          const followButton = document.querySelector('#follow-button')
+          followButton.innerText = is_following ? '언팔로우' : '팔로우'
+          const btnClass = is_following ? 'btn-warning' : 'btn-primary'
+          followButton.setAttribute('class', btnClass) 
+
+          // 팔로워 수, 팔로잉 수 갱신
+          const followersCount = document.querySelector('#followers-count')
+          const followingsCount = document.querySelector('#followings-count')
+          followersCount.innerText = followers
+          followingsCount.innerText = followings
+        })
+        .catch(error => console.log(error))
+    })
+  </script>
+{% endblock %}
