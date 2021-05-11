@@ -18,10 +18,10 @@
 
 - 컴포넌트에서 클릭 이벤트 발생 시 특정 함수를 실행하고자 할 때, @click 혹은 v-on:click 디렉티브를 사용한다. 
 
-  - `True`
+  - `False`
 
   - ```vue
-    <Component @click="functionName"/>
+    <Component @click.native="functionName"/>
     ```
 
 - 부모 컴포넌트는 props를 통해 자식 컴포넌트에게 이벤트를 보내고 자식 컴포넌트 는 emit을 통해 부모 컴포넌트에게 데이터를 전달한다.
