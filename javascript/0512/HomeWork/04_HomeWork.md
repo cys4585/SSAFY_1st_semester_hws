@@ -3,7 +3,8 @@
 ### 1.아래의 설명을 읽고 T/F 여부를 작성하시오. 
 
 - Vue 프로젝트에서 상태 관리를 하기 위해서는 반드시 Vuex를 설치해야 한다. 
-  - `True`
+  - `False`
+  - component 간의 데이터 전송은 props & emit으로도 가능하다.
 - mutation은 반드시 state를 수정하기 위해서만 사용되어야 한다. 
   - `True`
 - mutation은 store.dispatch로, action은 store.commit으로 호출할 수 있다. 
