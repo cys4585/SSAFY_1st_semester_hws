@@ -1,11 +1,12 @@
 <template>
   <div id="app">
     <div id="nav">
-      <span>
+      <span v-if="isLogin">
         <router-link :to="{ name: 'TodoList' }">Todo List</router-link> | 
         <router-link :to="{ name: 'CreateTodo' }">Create Todo</router-link> |
+        <router-link to="#" @click.native="logout">Logout</router-link> 
       </span>
-      <span>
+      <span v-else>
         <router-link :to="{ name: 'Signup' }">Signup</router-link> |
         <router-link :to="{ name: 'Login' }">Login</router-link> 
       </span>
@@ -15,6 +16,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'App',
   data: function () {
@@ -22,11 +25,16 @@ export default {
 
     }
   },
+  computed: {
+    isLogin: function () {
+      return this.$store.state.isLogin
+    }
+  },
   methods: {
-
+    ...mapActions(['logout', 'checkLogin'])
   },
   created: function () {
-
+    this.checkLogin()
   }
 }
 </script>

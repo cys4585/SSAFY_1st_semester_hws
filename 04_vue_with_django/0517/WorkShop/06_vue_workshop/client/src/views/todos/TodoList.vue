@@ -2,8 +2,8 @@
   <div>
     <ul>
       <li v-for="(todo, idx) in todos" :key="idx">
-        <span @click="updateTodoStatus(todo)" :class="{ completed: todo.completed }">{{ todo.title }}</span>
-        <button @click="deleteTodo(todo)" class="todo-btn">X</button>
+        <span @click="updateTodoStatus({todo, token})" :class="{ completed: todo.completed }">{{ todo.title }}</span>
+        <button @click="deleteTodo({todo, token})" class="todo-btn">X</button>
       </li>
     </ul>
   </div>
@@ -17,16 +17,19 @@ export default {
   data: function () {
     return {}
   },
-  methods: {
-    ...mapActions(['deleteTodo', 'updateTodoStatus']),
-    },
-  created: function () {
-    this.$store.dispatch('getTodosFromServer')
-  },
   computed: {
+    token: function () {
+      return this.$store.state.token
+    },
     todos: function () {
       return this.$store.state.todos
     }
+  },
+  methods: {
+    ...mapActions(['getTodos', 'deleteTodo', 'updateTodoStatus']),
+  },
+  created: function () {
+    this.getTodos(this.token)
   }
 }
 </script>
